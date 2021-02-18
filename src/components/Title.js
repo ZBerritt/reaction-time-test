@@ -6,7 +6,7 @@ export default function Title() {
                 <Typography variant="h3" color="inherit">
                     Reaction Time Test
                 </Typography>
-                <Typography variant="p" color="inherit">
+                <Typography color="inherit">
                     This is a reaction time test (built with React {">"}:3).
                     You will click a button and wait for it to change colors, then click it again.
                     This test is not 100% accurate and is limited by computer and browser performance, as well as basic input lag.

@@ -1,7 +1,7 @@
 import { Divider, Container } from '@material-ui/core';
 import './App.css';
 import Title from './Title';
-import Test from "./Test";
+import ReactionTest from "./ReactionTest";
 import Footer from "./Footer"
 
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
         <br />
         <Divider />
         <br />
-        <Test />
+        <ReactionTest />
         <Footer />
       </Container>
   );

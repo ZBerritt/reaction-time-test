@@ -1,9 +1,9 @@
 import Results from "./Results";
-import "./Test.css"
+import "./ReactionTest.css"
 import { useState, useEffect } from "react";
 import { Box, Button, Divider, Grid, Typography } from "@material-ui/core";
 
-export default function Test() {
+export default function ReactionTest() {
     const [results, setResults] = useState([]);
     const [testing, setTesting] = useState(false);
     const [triggered, setTriggered] = useState(null);
