@@ -8,7 +8,6 @@ I took a reaction time test in school and got inspired to make my own. The test 
 * Add more customizable settings 
 * Change graphics for the test box and results
 * Add data and fun facts about reaction time
-* Add a proper footer
 ## Usage
 An up-to-date deployment with instructions on how to test yourself can be found here:
 
