@@ -19,7 +19,7 @@ export default function Footer() {
     const classes = useStyles();
     return (
       <div className={classes.footer}>
-              <Typography>
+              <Typography variant="body1">
                   &copy; 2021 Nitrogen2Oxygen
                   <br />
                   <Link color="inherit" href="https://github.com/Nitrogen2Oxygen/reaction-time-test" target="_blank" rel="noreferrer">

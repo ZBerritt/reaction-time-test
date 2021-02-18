@@ -42,12 +42,14 @@ export default function ReactionTest() {
                 <Typography variant="h4">
                     Reaction Test
                 </Typography>
+                <Typography variant="body1">
                     <ol>
                         <li>Click the start button</li>
                         <li>Wait until the box turns green</li>
                         <li>Click the "Click Here" button as fast as possible</li>
                         <li>Do this 5 times to complete the test</li>
                     </ol>
+                </Typography>
                 <Divider variant="middle" />
                 <br />
                 <Grid container direction="row" justify="center">
