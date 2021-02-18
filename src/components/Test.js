@@ -11,7 +11,6 @@ export default function Test() {
 
     
     useEffect(() => {
-        console.log(testing)
         if (testing) {
             // Begin test
             document.getElementById("color-box").style["background-color"] = "red";
@@ -37,25 +36,13 @@ export default function Test() {
         }
     }, [testing]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    useEffect(() => {
-        console.log(results)
-    }, [results])
-
-    useEffect(() => {
-        console.log(triggered)
-    }, [triggered])
-
-    useEffect(() => {
-        console.log(testTimeout)
-    }, [testTimeout])
-
     return (
         <Grid container direction="row" justify="center">
             <Grid item xs>
                 <Typography variant="h4">
                     Reaction Test
                 </Typography>
-                <ol>
+                    <ol>
                         <li>Click the start button</li>
                         <li>Wait until the box turns green</li>
                         <li>Click the "Click Here" button as fast as possible</li>
@@ -103,6 +90,5 @@ export default function Test() {
                <Results stats={results} /> 
             </Grid>
         </Grid>
-        
     )
 }
