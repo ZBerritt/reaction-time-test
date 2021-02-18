@@ -1,41 +1,50 @@
-import { TextField, Grid, Typography } from "@material-ui/core";
+import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Typography } from "@material-ui/core";
 
 export default function Results(props) {
     return (
-        <Grid container direction="column" justify="center" spacing={3}>
-            <Grid item xs>
-            <Typography variant="h4">
-                Trials
-                </Typography>
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Trial 1" value={props.stats[0] ? props.stats[0] + "ms" : ""} />
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Trial 2" value={props.stats[1] ? props.stats[1] + "ms" : ""} />
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Trial 3" value={props.stats[2] ? props.stats[2] + "ms" : ""} />
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Trial 4" value={props.stats[3] ? props.stats[3] + "ms" : ""} />
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Trial 5" value={props.stats[4] ? props.stats[4] + "ms" : ""} />
-            </Grid>
-            <Grid item xs>
-                <TextField helperText="Average" value={props.stats[0] ? average(props.stats) + "ms" : ""} />
-            </Grid>
-        </Grid>
+        <TableContainer>
+            <Table size="medium" aria-label="Trial table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Trial</TableCell>
+                        <TableCell align="right">Time</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {props.stats.map((time, index) => (
+                        <TableRow key={"trial" + index}>
+                            <TableCell component="th" scope="row">
+                                {index + 1}
+                            </TableCell>
+                            <TableCell align="right">
+                                {time + "ms"}
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                    <Average stats={props.stats} />
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
 
-function average(arr) {
-     var total = 0;
-     arr.forEach(e => {
+function Average(props) {
+    var stats = props.stats
+    if (stats.length < 1) {
+        return null;
+    } else {
+        var total = 0;
+     stats.forEach(e => {
          if (typeof e == "number") {
             total += e;
          }
      });
-     return total/arr.length;
+     var average = total/stats.length;
+     return (
+        <TableRow>
+            <TableCell component="th" scope="row">Average</TableCell>
+            <TableCell align="right">{average + "ms"}</TableCell>
+        </TableRow>
+     )
+    }
 }

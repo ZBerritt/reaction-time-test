@@ -89,6 +89,9 @@ export default function ReactionTest() {
             </Grid>
             <Divider orientation="vertical" variant="middle" flexItem />
             <Grid item xs>
+                <Typography variant="h4">
+                    Results
+                </Typography>
                <Results stats={results} /> 
             </Grid>
         </Grid>
