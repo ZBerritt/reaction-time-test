@@ -1,7 +1,7 @@
 import Results from "./Results";
 import "./Test.css"
 import { useState, useEffect } from "react";
-import { Box, Button, Divider, Grid } from "@material-ui/core";
+import { Box, Button, Divider, Grid, Typography } from "@material-ui/core";
 
 export default function Test() {
     const [results, setResults] = useState([]);
@@ -52,14 +52,16 @@ export default function Test() {
     return (
         <Grid container direction="row" justify="center">
             <Grid item xs>
-                <h2>Reaction Test</h2>
+                <Typography variant="h4">
+                    Reaction Test
+                </Typography>
                 <ol>
                         <li>Click the start button</li>
                         <li>Wait until the box turns green</li>
                         <li>Click the "Click Here" button as fast as possible</li>
                         <li>Do this 5 times to complete the test</li>
                     </ol>
-                <Divider />
+                <Divider variant="middle" />
                 <br />
                 <Grid container direction="row" justify="center">
                     <Grid item xs>
@@ -94,6 +96,7 @@ export default function Test() {
                     </Grid>
                 </Grid>
             </Grid>
+            <Divider orientation="vertical" variant="middle" flexItem />
             <Grid item xs>
                <Results stats={results} /> 
             </Grid>

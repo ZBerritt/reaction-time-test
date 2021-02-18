@@ -1,4 +1,4 @@
-import { Container } from '@material-ui/core';
+import { Divider, Container } from '@material-ui/core';
 import './App.css';
 import Title from './Title';
 import Test from "./Test";
@@ -8,6 +8,9 @@ function App() {
   return (
     <Container>
       <Title />
+      <br />
+      <Divider />
+      <br />
       <Test />
       <Footer />
     </Container>

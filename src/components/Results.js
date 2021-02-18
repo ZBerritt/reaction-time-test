@@ -1,10 +1,12 @@
-import { TextField, Grid } from "@material-ui/core";
+import { TextField, Grid, Typography } from "@material-ui/core";
 
 export default function Results(props) {
     return (
         <Grid container direction="column" justify="center" spacing={3}>
             <Grid item xs>
-                <h2>Trials</h2>
+            <Typography variant="h4">
+                Trials
+                </Typography>
             </Grid>
             <Grid item xs>
                 <TextField helperText="Trial 1" value={props.stats[0] ? props.stats[0] + "ms" : ""} />
