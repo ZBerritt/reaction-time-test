@@ -4,10 +4,8 @@ I took a reaction time test in school and got inspired to make my own. The test 
 
 ## To Do
 * Fix messy React effects code
-* Add design!!
 * Add more customizable settings 
 * Change graphics for the test box and results
-* Add data and fun facts about reaction time
 ## Usage
 An up-to-date deployment with instructions on how to test yourself can be found here:
 

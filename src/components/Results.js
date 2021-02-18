@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Typography } from "@material-ui/core";
+import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell } from "@material-ui/core";
 
 export default function Results(props) {
     return (
