@@ -5,11 +5,9 @@ export default function Title() {
         <Box>
             <Box textAlign="center">
                 <h1>Reaction Time Test</h1>
-                <span>By Nitrogen2Oxygen</span>
             </Box>
             <Box textAlign="center">
-                <h2 style={{textAlign: "center"}}>About</h2>
-                    <p>
+                <p>
                     This is a reaction time test (built with React {">"}:3).
                     You will click a button and wait for it to change colors, then click it again.
                     This test is not 100% accurate and is limited by computer and browser performance, as well as basic input lag.
