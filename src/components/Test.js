@@ -84,6 +84,8 @@ export default function Test() {
                         <br /><br />
                         <Button id="reset-btn" variant="contained" color="secondary" size="medium" onClick={function() {
                             document.getElementById("main-btn").innerText = "Start";
+                            document.getElementById("main-btn").style.display = "inline-flex";
+                            document.getElementById("finished-btn").style.display = "none";
                             document.getElementById("color-box").style["background-color"] = "yellow";
                             setTesting(null);
                             setTriggered(null)
