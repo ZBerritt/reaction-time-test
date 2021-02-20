@@ -106,6 +106,7 @@ export default function ReactionTest() {
                             // Reset game
                             document.getElementById("color-box").style["background-color"] = "yellow";
                             setActionButton("main")
+                            document.getElementById("main-btn").innerText = "Start";
                             setTesting(null);
                             setTriggered(null)
                             setTestTimeout(testTimeout == null ? null : clearTimeout(testTimeout))
