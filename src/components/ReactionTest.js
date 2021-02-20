@@ -8,18 +8,20 @@ export default function ReactionTest() {
     const [testing, setTesting] = useState(false);
     const [triggered, setTriggered] = useState(null);
     const [testTimeout, setTestTimeout] = useState(null);
+    const [actionButton, setActionButton] = useState("main")
 
     
     useEffect(() => {
         if (testing) {
             // Begin test
             document.getElementById("color-box").style["background-color"] = "red";
-            document.getElementById("main-btn").innerText = "Click here";
+            document.getElementById("main-btn").innerText = "Click Here";
             var getTimeout = Math.floor(Math.random() * 7) + 3
             setTestTimeout(
                 setTimeout(function() {
                     document.getElementById("color-box").style["background-color"] = "green";
-                    setTriggered(new Date().getTime())
+                    setTriggered(new Date().getTime());
+                    setTestTimeout(null);
                 }, getTimeout * 1000)
             )
         } else {
@@ -30,11 +32,30 @@ export default function ReactionTest() {
             document.getElementById("color-box").style["background-color"] = "yellow";
             setResults([...results, diff])
             if (results.length >= 4) {
-                document.getElementById("main-btn").style.display = "none"
-                document.getElementById("finished-btn").style.display = "inline-flex"
+                setActionButton("finished")
             }
         }
     }, [testing]); // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
+        document.getElementById("main-btn").style.display = "none";
+        document.getElementById("too-early-btn").style.display = "none";
+        document.getElementById("finished-btn").style.display = "none";
+        switch(actionButton) {
+            case "main":
+                document.getElementById("main-btn").style.display = "inline-flex";
+                break;
+            case "early":
+                document.getElementById("too-early-btn").style.display = "inline-flex";
+                break;
+            case "finished":
+                document.getElementById("finished-btn").style.display = "inline-flex";
+                break;
+            default:
+                document.getElementById("main-btn").style.display = "inline-flex";
+                break;
+        }
+    }, [actionButton])
 
     return (
         <Grid container direction="row" justify="center">
@@ -59,23 +80,32 @@ export default function ReactionTest() {
                         if (!testing) {
                             setTesting(true); 
                         } else {
-                            if (testTimeout !== null) {
+                            if (testTimeout) {
+                                // Too early
                                 setTestTimeout(clearTimeout(testTimeout));
+                                document.getElementById("color-box").style["background-color"] = "yellow";
+                                setActionButton("early");
+                                document.getElementById("main-btn").innerText = "Start";
+                                setTimeout(setActionButton, 2000, "main");
+                            } else {
+                                // Hit
                                 document.getElementById("main-btn").innerText = "Start";
                                 document.getElementById("color-box").style["background-color"] = "yellow";
                             }
                             setTesting(false);
                         }
                         }}>Start</Button>
+                        <Button style={{display: "none"}} id="too-early-btn" variant="contained" color="secondary" size="large" disabled>
+                            Too Early!
+                        </Button>
                         <Button style={{display: "none"}} id="finished-btn" variant="contained" color="secondary" size="large" disabled>
                             Finished!
                         </Button>
                         <br /><br />
                         <Button id="reset-btn" variant="contained" color="secondary" size="medium" onClick={function() {
-                            document.getElementById("main-btn").innerText = "Start";
-                            document.getElementById("main-btn").style.display = "inline-flex";
-                            document.getElementById("finished-btn").style.display = "none";
+                            // Reset game
                             document.getElementById("color-box").style["background-color"] = "yellow";
+                            setActionButton("main")
                             setTesting(null);
                             setTriggered(null)
                             setTestTimeout(testTimeout == null ? null : clearTimeout(testTimeout))
