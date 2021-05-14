@@ -1,7 +1,7 @@
 import Results from "./Results";
 import "./ReactionTest.css";
 import { useState, useEffect } from "react";
-import { Box, Button, Divider, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Divider, Grid, Typography, List, ListItem } from "@material-ui/core";
 
 export default function ReactionTest() {
   const [results, setResults] = useState([]);
@@ -41,14 +41,12 @@ export default function ReactionTest() {
     <Grid container direction="row" justify="center">
       <Grid item xs>
         <Typography variant="h4">Reaction Test</Typography>
-        <Typography variant="body1">
-          <ol>
-            <li>Click the start button</li>
-            <li>Wait until the box turns green</li>
-            <li>Click the "Click Here" button as fast as possible</li>
-            <li>Do this 5 times to complete the test</li>
-          </ol>
-        </Typography>
+          <List>
+            <ListItem>1. Click the blue "start" button</ListItem>
+            <ListItem>2. Wait until the box turns green</ListItem>
+            <ListItem>3. Click the "Click Here" button as fast as possible</ListItem>
+            <ListItem>4. Do this 5 times to complete the test</ListItem>
+          </List>
         <Divider variant="middle" />
         <br />
         <Grid container direction="row" justify="center">
@@ -56,26 +54,17 @@ export default function ReactionTest() {
             <ActionButton button={actionButton} />
             <br />
             <br />
-            <Button
-              id="reset-btn"
-              variant="contained"
-              color="secondary"
-              size="medium"
-              onClick={function () {
+            <Button id="reset-btn" variant="contained" color="secondary" size="medium" onClick={function () {
                 // Reset game
-                document.getElementById("color-box").style["background-color"] =
-                  "yellow";
+                document.getElementById("color-box").style["background-color"] = "yellow";
                 setActionButton("main");
-                setTesting(null);
+                setTesting(false);
                 setTriggered(null);
-                setTestTimeout(
-                  testTimeout == null ? null : clearTimeout(testTimeout)
-                );
+                setTestTimeout(clearTimeout(testTimeout));
                 setResults([]);
-              }}
-            >
-              Reset
-            </Button>
+              }}>
+                Reset
+              </Button>
           </Grid>
           <Grid item xs>
             <Box
