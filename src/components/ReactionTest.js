@@ -14,7 +14,7 @@ export default function ReactionTest() {
     if (testing) {
       // Begin test
       document.getElementById("color-box").style["background-color"] = "red";
-      document.getElementById("main-btn").innerText = "Click Here";
+      setActionButton("click-here");
       var getTimeout = Math.floor(Math.random() * 7) + 3;
       setTestTimeout(
         setTimeout(function () {
@@ -37,26 +37,6 @@ export default function ReactionTest() {
     }
   }, [testing]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    document.getElementById("main-btn").style.display = "none";
-    document.getElementById("too-early-btn").style.display = "none";
-    document.getElementById("finished-btn").style.display = "none";
-    switch (actionButton) {
-      case "main":
-        document.getElementById("main-btn").style.display = "inline-flex";
-        break;
-      case "early":
-        document.getElementById("too-early-btn").style.display = "inline-flex";
-        break;
-      case "finished":
-        document.getElementById("finished-btn").style.display = "inline-flex";
-        break;
-      default:
-        document.getElementById("main-btn").style.display = "inline-flex";
-        break;
-    }
-  }, [actionButton]);
-
   return (
     <Grid container direction="row" justify="center">
       <Grid item xs>
@@ -73,58 +53,7 @@ export default function ReactionTest() {
         <br />
         <Grid container direction="row" justify="center">
           <Grid item xs>
-            <Button
-              id="main-btn"
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={function () {
-                if (results.length >= 5) return;
-                if (!testing) {
-                  setTesting(true);
-                } else {
-                  if (testTimeout) {
-                    // Too early
-                    setTestTimeout(clearTimeout(testTimeout));
-                    document.getElementById("color-box").style[
-                      "background-color"
-                    ] = "yellow";
-                    setActionButton("early");
-                    document.getElementById("main-btn").innerText = "Start";
-                    setTimeout(setActionButton, 2000, "main");
-                  } else {
-                    // Hit
-                    document.getElementById("main-btn").innerText = "Start";
-                    document.getElementById("color-box").style[
-                      "background-color"
-                    ] = "yellow";
-                  }
-                  setTesting(false);
-                }
-              }}
-            >
-              Start
-            </Button>
-            <Button
-              style={{ display: "none" }}
-              id="too-early-btn"
-              variant="contained"
-              color="secondary"
-              size="large"
-              disabled
-            >
-              Too Early!
-            </Button>
-            <Button
-              style={{ display: "none" }}
-              id="finished-btn"
-              variant="contained"
-              color="secondary"
-              size="large"
-              disabled
-            >
-              Finished!
-            </Button>
+            <ActionButton button={actionButton} />
             <br />
             <br />
             <Button
@@ -137,7 +66,6 @@ export default function ReactionTest() {
                 document.getElementById("color-box").style["background-color"] =
                   "yellow";
                 setActionButton("main");
-                document.getElementById("main-btn").innerText = "Start";
                 setTesting(null);
                 setTriggered(null);
                 setTestTimeout(
@@ -166,4 +94,55 @@ export default function ReactionTest() {
       </Grid>
     </Grid>
   );
+
+  function ActionButton(props) {
+    switch (props.button) {
+      case "early":
+        return (
+          <Button id="too-early-btn" variant="contained" color="secondary" size="large" disabled>
+            Too Early!
+          </Button>
+        );
+      case "finished":
+        return (
+          <Button id="finished-btn" variant="contained" color="secondary" size="large" disabled>
+            Finished!
+          </Button>
+        );
+        case "click-here":
+          return (
+            <Button id="click-here-btn" variant="contained" color="primary" size="large"
+              onClick={function () {
+                if (results.length >= 5) return;
+                if (testTimeout) {
+                  // Too early
+                  setTestTimeout(clearTimeout(testTimeout));
+                  document.getElementById("color-box").style["background-color"] = "yellow";
+                  setActionButton("early");
+                  setTimeout(setActionButton, 2000, "main");
+                } else {
+                  // Hit
+                  setActionButton("main");
+                  document.getElementById("color-box").style["background-color"] = "yellow";
+                }
+                setTesting(false);
+              }}
+            >
+              Click Here
+            </Button>
+          );
+      case "main":
+      default:
+        return (
+          <Button id="main-btn" variant="contained" color="primary" size="large"
+            onClick={function () {
+              if (results.length >= 5) return;
+              setTesting(true);
+            }}
+          >
+            Start
+          </Button>
+        );
+    }
+  }
 }
