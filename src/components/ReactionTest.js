@@ -1,4 +1,5 @@
 import Results from "./Results";
+import Settings from "./Settings";
 import "./ReactionTest.css";
 import { useState, useEffect } from "react";
 import { Box, Button, Divider, Grid, Typography, List, ListItem } from "@material-ui/core";
@@ -9,6 +10,9 @@ export default function ReactionTest() {
   const [triggered, setTriggered] = useState(null);
   const [testTimeout, setTestTimeout] = useState(null);
   const [actionButton, setActionButton] = useState("main");
+  const [settings, setSettings] = useState({
+    trials: 5
+  })
 
   useEffect(() => {
     if (testing) {
@@ -31,7 +35,7 @@ export default function ReactionTest() {
       setTriggered(null);
       document.getElementById("color-box").style["background-color"] = "yellow";
       setResults([...results, diff]);
-      if (results.length >= 4) {
+      if (results.length >= settings.trials - 1) {
         setActionButton("finished");
       }
     }
@@ -54,7 +58,9 @@ export default function ReactionTest() {
             <ActionButton button={actionButton} />
             <br />
             <br />
-            <Button id="reset-btn" variant="contained" color="secondary" size="medium" onClick={function () {
+            <Grid container direction="row" justify="center">
+              <Grid item xs>
+              <Button id="reset-btn" variant="contained" color="secondary" size="medium" onClick={function () {
                 // Reset game
                 document.getElementById("color-box").style["background-color"] = "yellow";
                 setActionButton("main");
@@ -65,6 +71,11 @@ export default function ReactionTest() {
               }}>
                 Reset
               </Button>
+              </Grid>
+              <Grid item xs>
+                <Settings settings={settings} setSettings={setSettings} />
+              </Grid>
+            </Grid>  
           </Grid>
           <Grid item xs>
             <Box
@@ -115,8 +126,7 @@ export default function ReactionTest() {
                   document.getElementById("color-box").style["background-color"] = "yellow";
                 }
                 setTesting(false);
-              }}
-            >
+              }}>
               Click Here
             </Button>
           );
@@ -127,11 +137,11 @@ export default function ReactionTest() {
             onClick={function () {
               if (results.length >= 5) return;
               setTesting(true);
-            }}
-          >
+            }}>
             Start
           </Button>
         );
     }
   }
 }
+
