@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/reaction-time-test/static/css/main.156db306.css",
+    "main.js": "/reaction-time-test/static/js/main.87310b28.js",
+    "service-worker.js": "/reaction-time-test/service-worker.js",
+    "index.html": "/reaction-time-test/index.html",
+    "main.156db306.css.map": "/reaction-time-test/static/css/main.156db306.css.map",
+    "main.87310b28.js.map": "/reaction-time-test/static/js/main.87310b28.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.156db306.css",
+    "static/js/main.87310b28.js"
+  ]
+}
